@@ -6,11 +6,17 @@ export async function fetchAaveYields(chain: 'ethereum' | 'polygon' | 'arbitrum'
     const url = `https://gateway.thegraph.com/api/${process.env.GRAPH_API_KEY}/subgraphs/id/${SUBGRAPH_IDS[chain].aave}`;
 
     const query = `{
-      reserves(where: { symbol_in: ${JSON.stringify(TRACKED_TOKENS)}, isActive: true }) {
-        symbol
-        liquidityRate
-        totalLiquidityUSD
-        aToken { id }
+      markets(where: { isActive: true }, first: 100) {
+        id
+        inputToken {
+          symbol
+        }
+        rates {
+          rate
+          side
+          type
+        }
+        totalValueLockedUSD
       }
     }`;
 
@@ -21,16 +27,27 @@ export async function fetchAaveYields(chain: 'ethereum' | 'polygon' | 'arbitrum'
       return [];
     }
 
-    return (data.data?.reserves || []).map((r: any) => ({
-      protocol: "Aave V3",
-      chain,
-      asset: r.symbol,
-      type: "lending",
-      apy: (Number(r.liquidityRate) / 1e27) * 100, // Ray to %
-      tvl: Number(r.totalLiquidityUSD || 0),
-      poolAddress: r.aToken.id,
-      lastUpdated: new Date().toISOString()
-    }));
+    const markets = data.data?.markets || [];
+    const filteredMarkets = markets.filter((m: any) =>
+      TRACKED_TOKENS.includes(m.inputToken?.symbol)
+    );
+
+    return filteredMarkets.map((m: any) => {
+      // Find the supplier APY. In Messari schema, side: "LENDER", type: "VARIABLE"
+      const rateObj = m.rates?.find((r: any) => r.side === 'LENDER' && r.type === 'VARIABLE');
+      const apy = rateObj ? Number(rateObj.rate) : 0;
+
+      return {
+        protocol: "Aave V3",
+        chain,
+        asset: m.inputToken?.symbol,
+        type: "lending",
+        apy,
+        tvl: Number(m.totalValueLockedUSD || 0),
+        poolAddress: m.id,
+        lastUpdated: new Date().toISOString()
+      };
+    });
   } catch (error) {
     console.error(`Failed to fetch Aave yields for ${chain}:`, error);
     return [];
