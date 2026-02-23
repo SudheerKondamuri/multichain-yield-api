@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { SUBGRAPH_IDS } from '../constants/subgraphs.js';
+import { SUBGRAPH_IDS, TRACKED_TOKENS } from '../constants/subgraphs.js';
 
 export async function fetchAaveYields(chain: 'ethereum' | 'polygon' | 'arbitrum') {
   try {
     const url = `https://gateway.thegraph.com/api/${process.env.GRAPH_API_KEY}/subgraphs/id/${SUBGRAPH_IDS[chain].aave}`;
 
     const query = `{
-      reserves(where: { isActive: true }) {
+      reserves(where: { symbol_in: ${JSON.stringify(TRACKED_TOKENS)}, isActive: true }) {
         symbol
         liquidityRate
         totalLiquidityUSD
