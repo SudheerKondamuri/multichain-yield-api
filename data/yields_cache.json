@@ -1,0 +1,14 @@
+{
+  "ethereum": {
+    "aave-v3": [],
+    "lastSync": "2026-02-23T18:45:16.329Z"
+  },
+  "polygon": {
+    "aave-v3": [],
+    "lastSync": "2026-02-23T18:45:16.632Z"
+  },
+  "arbitrum": {
+    "aave-v3": [],
+    "lastSync": "2026-02-23T18:45:16.940Z"
+  }
+}
