@@ -1,10 +1,7 @@
-import { fetchAaveYields, SupportedChain } from "./indexers/aave/aave";
+import { fetchAaveYields } from "./indexers/aave/aave";
 async function test() {
-    const chains: SupportedChain[] = ['ethereum', 'polygon', 'arbitrum'];
-    for (const chain of chains) {
-        const yields = await fetchAaveYields(chain);
-        console.log(`Aave V3 Yields on ${chain}:`, yields);
-    }
+    const yields = await fetchAaveYields('ethereum');
+    console.log(yields);
 }
 
 test();
