@@ -15,4 +15,7 @@ const SUBGRAPH_IDS = {
     curve: '77mG1reS3799696mvFopF' 
   }
 };
-export { SUBGRAPH_IDS };
+
+const TRACKED_TOKENS = ['USDC', 'USDT', 'DAI', 'USDS', 'WETH', 'WBTC', 'stETH', 'cbETH', 'crvUSD', 'GHO'];
+
+export { SUBGRAPH_IDS, TRACKED_TOKENS };
