@@ -1,0 +1,18 @@
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Optionally compile, or just use tsx for execution if we install it
+RUN npm install -g tsx
+
+EXPOSE 4000
+
+# Install curl for the docker-compose healthcheck
+RUN apk --no-cache add curl
+
+CMD ["tsx", "src/server.ts"]
