@@ -1,48 +1,59 @@
 import axios from 'axios';
-import { SUBGRAPH_IDS } from '../../config/constants.js';
+import { UNISWAP_SUBGRAPH_IDS } from '../../config/constants';
 
-export async function fetchUniswapYields(chain: 'ethereum' | 'polygon' | 'arbitrum') {
-    try {
-        const url = `https://gateway.thegraph.com/api/${process.env.GRAPH_API_KEY}/subgraphs/id/${SUBGRAPH_IDS[chain].uniswap}`;
 
-        const query = `{
-      pools(orderBy: totalValueLockedUSD, orderDirection: desc, first: 20) {
+const TRACKED_TOKENS = ['USDC', 'USDT', 'DAI', 'WBTC', 'WETH'];
+
+export async function fetchUniswapYields(chain: 'ethereum' | 'arbitrum' | 'polygon') {
+    const url = `https://gateway.thegraph.com/api/${process.env.GRAPH_API_KEY}/subgraphs/id/${UNISWAP_SUBGRAPH_IDS[chain]}`;
+    if (!url) return [];
+
+    // Query 20 pools, but only those with >$500k TVL to ignore "zombie" pools
+    const query = `
+    {
+      pools(first: 20, orderBy: totalValueLockedUSD, orderDirection: desc, where: { totalValueLockedUSD_gt: "500000" }) {
         id
         token0 { symbol }
         token1 { symbol }
+        feeTier
         totalValueLockedUSD
         poolDayData(first: 1, orderBy: date, orderDirection: desc) {
-          feesUSD
+          volumeUSD
         }
       }
-    }`;
+    }
+    `;
 
-        const { data } = await axios.post(url, { query });
+    try {
+        const response = await axios.post(url, { query });
+        const pools = response.data?.data?.pools || [];
 
-        if (data.errors) {
-            console.error(`Graph Error [Uniswap ${chain}]:`, data.errors);
-            return [];
-        }
+        return pools
+            .filter((pool: any) => 
+                TRACKED_TOKENS.includes(pool.token0.symbol) || 
+                TRACKED_TOKENS.includes(pool.token1.symbol)
+            )
+            .map((pool: any) => {
+                const tvl = parseFloat(pool.totalValueLockedUSD);
+                const volume24h = parseFloat(pool.poolDayData[0]?.volumeUSD || "0");
+                const feeFactor = parseFloat(pool.feeTier) / 1000000; // e.g., 3000 -> 0.003 (0.3%)
 
-        return (data.data?.pools || []).map((p: any) => {
-            const dailyFees = p.poolDayData?.[0]?.feesUSD || 0;
-            const tvl = Number(p.totalValueLockedUSD || 0);
-            // Estimated APY: (Daily Fees * 365 / TVL) * 100
-            const apy = tvl > 0 ? (Number(dailyFees) * 365 / tvl) * 100 : 0;
+                // Calculate APY based on fees collected vs capital locked
+                const apy = tvl > 0 ? ((volume24h * feeFactor * 365) / tvl) * 100 : 0;
 
-            return {
-                protocol: "Uniswap V3",
-                chain,
-                asset: `${p.token0.symbol}-${p.token1.symbol}`,
-                type: "lp",
-                apy: apy,
-                tvl: tvl,
-                poolAddress: p.id,
-                lastUpdated: new Date().toISOString()
-            };
-        });
+                return {
+                    protocol: "Uniswap V3",
+                    chain,
+                    asset: `${pool.token0.symbol}/${pool.token1.symbol}`,
+                    apy: Number(apy.toFixed(2)),
+                    tvl: Math.round(tvl),
+                    poolAddress: pool.id,
+                    feeTier: `${parseFloat(pool.feeTier) / 10000}%`,
+                    lastUpdated: new Date().toISOString()
+                };
+            });
     } catch (error) {
-        console.error(`Failed to fetch Uniswap yields for ${chain}:`, error);
+        console.error(`Uniswap Indexer Error [${chain}]:`, error);
         return [];
     }
 }
