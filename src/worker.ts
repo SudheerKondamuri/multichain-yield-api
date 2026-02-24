@@ -1,48 +1,53 @@
 import { redisClient } from './utils/redisClient.js';
 import { fetchAaveYields } from './indexers/aave/aave.js';
+import { fetchCurveYields } from './indexers/curve/curve.js';
 import fs from 'fs';
 import path from 'path';
+import { fetchUniswapYields } from './indexers/uniswap/uniswap.js';
 
 const chains: ('ethereum' | 'polygon' | 'arbitrum')[] = ['ethereum', 'polygon', 'arbitrum'];
 
 async function syncData() {
     console.log(`\n🔄 [${new Date().toISOString()}] Starting Data Sync...`);
 
-    // We will build an aggregated structure for the JSON file
-    const snapshot: any = {
-        ethereum: { 'aave-v3': [], 'lastSync': '' },
-        polygon: { 'aave-v3': [], 'lastSync': '' },
-        arbitrum: { 'aave-v3': [], 'lastSync': '' }
-    };
+    // snapshot will store everything for the JSON backup
+    const snapshot: any = {};
 
     for (const chain of chains) {
         try {
-            // 1. Fetch from Aave indexer
-            const aaveYields = await fetchAaveYields(chain);
+            snapshot[chain] = { lastSync: new Date().toISOString() };
 
-            // 2. Fetch existing Redis data to not overwrite other protocols (though right now it's only Aave)
-            const existingChainDataStr = await redisClient.get(`yields:${chain}`);
-            const chainData: any[] = existingChainDataStr ? JSON.parse(existingChainDataStr) : [];
+            // 1. Fetch from all indexers in parallel
+            const [aaveYields, curveYields, uniswapYields] = await Promise.all([
+                fetchAaveYields(chain),
+                fetchCurveYields(chain),
+                fetchUniswapYields(chain)
+            ]);
 
-            // 3. Remove old Aave data from array, and merge in the newly fetched Aave data
-            const otherProtocols = chainData.filter((item: any) => item.protocol !== 'Aave V3');
-            const updatedChainData = [...otherProtocols, ...aaveYields];
+            // 2. Prepare aggregated data for Redis
+            // We label them clearly so the frontend can filter by protocol
+            const updatedChainData = [
+                ...aaveYields.map((y: any) => ({ ...y, protocol: 'Aave V3' })),
+                ...curveYields.map((y: any) => ({ ...y, protocol: 'Curve' })),
+                ...uniswapYields.map((y: any) => ({ ...y, protocol: 'Uniswap V3' }))
+            ];
 
-            // 4. Set to Redis with TTL 300s (5 minutes)
+            // 3. Set to Redis (5-minute expiry)
             await redisClient.setEx(`yields:${chain}`, 300, JSON.stringify(updatedChainData));
 
-            console.log(`✅ Synced ${aaveYields.length} Aave pools for ${chain}`);
-
-            // 5. Update local snapshot object
+            // 4. Update snapshot for the local file
             snapshot[chain]['aave-v3'] = aaveYields;
-            snapshot[chain].lastSync = new Date().toISOString();
+            snapshot[chain]['curve'] = curveYields;
+            snapshot[chain]['uniswap-v3'] = uniswapYields;
+
+            console.log(`✅ ${chain.toUpperCase()}: Synced ${aaveYields.length} Aave & ${curveYields.length} Curve & ${uniswapYields.length} Uniswap pools`);
 
         } catch (error) {
             console.error(`❌ Sync Failed for ${chain}:`, error);
         }
     }
 
-    // 6. Write to persistent backup file
+    // 5. Write to persistent backup file
     try {
         const backupPath = path.resolve(process.cwd(), 'data', 'yields_cache.json');
         if (!fs.existsSync(path.dirname(backupPath))) {
@@ -56,13 +61,8 @@ async function syncData() {
 }
 
 async function startWorker() {
-    // Initial fetch
     await syncData();
-    // Schedule every 5 minutes (300,000 milliseconds)
     setInterval(syncData, 5 * 60 * 1000);
 }
 
-// Ensure redis client connects successfully
-// Since redisClient connects synchronously if 'await redisClient.connect()' is used in its file, 
-// we just call startWorker here.
 startWorker().catch(console.error);
