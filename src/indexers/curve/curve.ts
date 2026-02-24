@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SUBGRAPH_IDS } from '../constants/subgraphs.js';
+import { SUBGRAPH_IDS } from '../../config/constants.js';
 
 export async function fetchCurveYields(chain: 'ethereum' | 'polygon' | 'arbitrum') {
     try {
