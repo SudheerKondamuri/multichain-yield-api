@@ -1,14 +1,724 @@
 {
   "ethereum": {
-    "aave-v3": [],
-    "lastSync": "2026-02-23T18:45:16.329Z"
+    "lastSync": "2026-02-24T18:28:29.696Z",
+    "aave-v3": [
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "DAI",
+        "type": "lending",
+        "apy": 1.9,
+        "tvl": 156171553.4955286,
+        "poolAddress": "0x018008bfb33d285247a21d44e50697654f754e63",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "USDT",
+        "type": "lending",
+        "apy": 1.79,
+        "tvl": 5728564077.825029,
+        "poolAddress": "0x23878914efe38d27c4d67ab83ed1b93a74d4086a",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "USDS",
+        "type": "lending",
+        "apy": 0.12,
+        "tvl": 39614273.75909835,
+        "poolAddress": "0x32a6268f9ba3642dda7892add74f1d34469a4259",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "WETH",
+        "type": "lending",
+        "apy": 2.05,
+        "tvl": 5411014836.494724,
+        "poolAddress": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "WBTC",
+        "type": "lending",
+        "apy": 0,
+        "tvl": 2644475480.322115,
+        "poolAddress": "0x5ee5bf7ae06d1be5997a1a72006fe6c607ec6de8",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "cbETH",
+        "type": "lending",
+        "apy": 0.18,
+        "tvl": 9136303.514230916,
+        "poolAddress": "0x977b6fc5de62598b08c85ac8cf2b745874e8b78c",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "USDC",
+        "type": "lending",
+        "apy": 2.08,
+        "tvl": 3921521020.567921,
+        "poolAddress": "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "ethereum",
+        "asset": "crvUSD",
+        "type": "lending",
+        "apy": 2.96,
+        "tvl": 235632.59586896974,
+        "poolAddress": "0xb82fa9f31612989525992fcfbb09ab22eff5c85a",
+        "lastUpdated": "2026-02-24T18:28:30.662Z"
+      }
+    ],
+    "curve": [
+      {
+        "protocol": "Curve",
+        "chain": "ethereum",
+        "asset": "3Crv",
+        "apy": 5.49,
+        "tvl": 156222094,
+        "tokens": [
+          "DAI",
+          "USDC",
+          "USDT"
+        ],
+        "poolAddress": "0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7",
+        "lastUpdated": "2026-02-24T18:28:30.660Z"
+      },
+      {
+        "protocol": "Curve",
+        "chain": "ethereum",
+        "asset": "steCRV",
+        "apy": 3.23,
+        "tvl": 81330658,
+        "tokens": [
+          "stETH",
+          "ETH"
+        ],
+        "poolAddress": "0xdc24316b9ae028f1497c275eb9192a3ea0f67022",
+        "lastUpdated": "2026-02-24T18:28:30.660Z"
+      }
+    ],
+    "uniswap-v3": [
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "USDC/WETH",
+        "apy": 6.46,
+        "tvl": 345970601,
+        "poolAddress": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:31.062Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "USDC/WETH",
+        "apy": 1.5,
+        "tvl": 254372824,
+        "poolAddress": "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.062Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WETH/USDT",
+        "apy": 7.08,
+        "tvl": 201134412,
+        "poolAddress": "0x4e68ccd3e89f51c3074ca5072bbac773960dfa36",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.062Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WBTC/WETH",
+        "apy": 0.75,
+        "tvl": 173368425,
+        "poolAddress": "0xcbcdf9626bc03e24f779434178a73a0b4bad62ed",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WBTC/USDC",
+        "apy": 2.3,
+        "tvl": 126042379,
+        "poolAddress": "0x99ac8ca7087fa4a2a1fb6357269965a2014abc35",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WBTC/WETH",
+        "apy": 5.31,
+        "tvl": 101451747,
+        "poolAddress": "0x4585fe77225b41b697c938b018e2ac67ac5a20c0",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WETH/USDT",
+        "apy": 1.84,
+        "tvl": 62506007,
+        "poolAddress": "0x11b815efb8f581194ae79006d24e0d814b7697f6",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WBTC/USDT",
+        "apy": 5.91,
+        "tvl": 52485476,
+        "poolAddress": "0x9db9e0e53058c89e5b94e29621a205198648425b",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "LINK/WETH",
+        "apy": 2.32,
+        "tvl": 48218092,
+        "poolAddress": "0xa6cc3c2531fdaa6ae1a3ca84c2855806728693e8",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "DAI/WETH",
+        "apy": 0.99,
+        "tvl": 42974695,
+        "poolAddress": "0xc2e9f25be6257c210d7adf0d4cd6e3e881ba25f8",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "USDC/USDT",
+        "apy": 5.6,
+        "tvl": 32708333,
+        "poolAddress": "0x3416cf6c708da44db2624d63ea0aaef7113527c6",
+        "feeTier": "0.01%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WETH/ETHM",
+        "apy": 0,
+        "tvl": 30053613,
+        "poolAddress": "0x40e629a26d96baa6d81fae5f97205c2ab2c1ff29",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "UNI/WETH",
+        "apy": 1.15,
+        "tvl": 29597080,
+        "poolAddress": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "PEPE/WETH",
+        "apy": 0.16,
+        "tvl": 27839747,
+        "poolAddress": "0x11950d141ecb863f01007add7d1a342041227b58",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "WBTC/cbBTC",
+        "apy": 0.93,
+        "tvl": 27791123,
+        "poolAddress": "0xe8f7c89c5efa061e340f2d2f206ec78fd8f7e124",
+        "feeTier": "0.01%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "ethereum",
+        "asset": "USDT/USDf",
+        "apy": 0.02,
+        "tvl": 25424966,
+        "poolAddress": "0xc275a7390966e4bcbf331b837cd7316c4a3efa83",
+        "feeTier": "0.01%",
+        "lastUpdated": "2026-02-24T18:28:31.063Z"
+      }
+    ]
   },
   "polygon": {
-    "aave-v3": [],
-    "lastSync": "2026-02-23T18:45:16.632Z"
+    "lastSync": "2026-02-24T18:28:31.066Z",
+    "aave-v3": [
+      {
+        "protocol": "Aave V3",
+        "chain": "polygon",
+        "asset": "USDC",
+        "type": "lending",
+        "apy": 2.06,
+        "tvl": 40602189.02262597,
+        "poolAddress": "0xa4d94019934d8333ef880abffbf2fdd611c762bd",
+        "lastUpdated": "2026-02-24T18:28:32.181Z"
+      }
+    ],
+    "curve": [],
+    "uniswap-v3": [
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "USDC/WETH",
+        "apy": 0.73,
+        "tvl": 11692980,
+        "poolAddress": "0x45dda9cb7c25131df268515131f647d726f50608",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "USDC/USDC",
+        "apy": 0.3,
+        "tvl": 7457843,
+        "poolAddress": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+        "feeTier": "0.01%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WBTC/WETH",
+        "apy": 3.05,
+        "tvl": 5631701,
+        "poolAddress": "0x50eaedb835021e4a108b7290636d62e9765cc6d7",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WMATIC/USDC",
+        "apy": 0.7,
+        "tvl": 4841152,
+        "poolAddress": "0xa374094527e1673a86de625aa59517c5de346d32",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WETH/USDT",
+        "apy": 7.24,
+        "tvl": 3439742,
+        "poolAddress": "0x4ccd010148379ea531d6c587cfdd60180196f9b1",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WBTC/USDC",
+        "apy": 0.04,
+        "tvl": 3374057,
+        "poolAddress": "0x847b64f9d3a95e977d157866447a5c0a5dfa0ee5",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WMATIC/USDT",
+        "apy": 19.31,
+        "tvl": 2717863,
+        "poolAddress": "0x9b08288c3be4f62bbf8d1c20ac9c5e6f9467d8b7",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WBTC/USDC",
+        "apy": 7.32,
+        "tvl": 2495354,
+        "poolAddress": "0xeef1a9507b3d505f0062f2be9453981255b503c8",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WMATIC/WETH",
+        "apy": 0.58,
+        "tvl": 2304077,
+        "poolAddress": "0x167384319b41f7094e62f7506409eb38079abff8",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "USDC/WETH",
+        "apy": 0.85,
+        "tvl": 1889427,
+        "poolAddress": "0x0e44ceb592acfc5d3f09d996302eb4c499ff8c10",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WMATIC/WETH",
+        "apy": 1.16,
+        "tvl": 1800343,
+        "poolAddress": "0x86f1d8390222a3691c28938ec7404a1661e618e0",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WETH/AAVE",
+        "apy": 5.82,
+        "tvl": 1781652,
+        "poolAddress": "0x2aceda63b5e958c45bd27d916ba701bc1dc08f7a",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "USDC/LINK",
+        "apy": 5.5,
+        "tvl": 1698486,
+        "poolAddress": "0x94ab9e4553ffb839431e37cc79ba8905f45bfbea",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "USDC/WETH",
+        "apy": 6.3,
+        "tvl": 1649083,
+        "poolAddress": "0xa4d8c89f0c20efbe54cba9e7e7a7e509056228d9",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "LINK/WETH",
+        "apy": 2.17,
+        "tvl": 1537534,
+        "poolAddress": "0x3e31ab7f37c048fc6574189135d108df80f0ea26",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "USDC/USDT",
+        "apy": 1.56,
+        "tvl": 1040449,
+        "poolAddress": "0xdac8a8e6dbf8c690ec6815e0ff03491b2770255d",
+        "feeTier": "0.01%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WMATIC/USDC",
+        "apy": 18.37,
+        "tvl": 998977,
+        "poolAddress": "0xb6e57ed85c4c9dbfef2a68711e9d6f36c56e0fcb",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WBTC/USDC",
+        "apy": 0,
+        "tvl": 993847,
+        "poolAddress": "0xe6ba22265aefe9dc392f544437acce2aedf8ef36",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "USDC/LINK",
+        "apy": 0,
+        "tvl": 906309,
+        "poolAddress": "0x79e4240e33c121402dfc9009de266356c91f241d",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "polygon",
+        "asset": "WBTC/WETH",
+        "apy": 0.18,
+        "tvl": 806634,
+        "poolAddress": "0xfe343675878100b344802a6763fd373fdeed07a4",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:32.215Z"
+      }
+    ]
   },
   "arbitrum": {
-    "aave-v3": [],
-    "lastSync": "2026-02-23T18:45:16.940Z"
+    "lastSync": "2026-02-24T18:28:32.216Z",
+    "aave-v3": [
+      {
+        "protocol": "Aave V3",
+        "chain": "arbitrum",
+        "asset": "USDC",
+        "type": "lending",
+        "apy": 1.55,
+        "tvl": 285124281.466951,
+        "poolAddress": "0x724dc807b04555b71ed48a6896b6f41593b8c637",
+        "lastUpdated": "2026-02-24T18:28:33.064Z"
+      },
+      {
+        "protocol": "Aave V3",
+        "chain": "arbitrum",
+        "asset": "GHO",
+        "type": "lending",
+        "apy": 1.83,
+        "tvl": 3693939.613189007,
+        "poolAddress": "0xebe517846d0f36eced99c735cbf6131e1feb775d",
+        "lastUpdated": "2026-02-24T18:28:33.064Z"
+      }
+    ],
+    "curve": [],
+    "uniswap-v3": [
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "PSI/USDC",
+        "apy": 0,
+        "tvl": 654267541,
+        "poolAddress": "0x22c824e48220d837cdf294759059c0ad5c9dba20",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "GHO/WETH",
+        "apy": 0,
+        "tvl": 393674470,
+        "poolAddress": "0xf9188aff2b5fa1e1e5542995806706fe6a84f3f3",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/USDC",
+        "apy": 10.77,
+        "tvl": 96247794,
+        "poolAddress": "0xc6962004f452be9203591991d15f6b388e09e8d0",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WBTC/WETH",
+        "apy": 12.63,
+        "tvl": 65158522,
+        "poolAddress": "0x2f5e87c9312fa29aed5c179e456625d79015299c",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "ARC/WETH",
+        "apy": 0,
+        "tvl": 63219845,
+        "poolAddress": "0xf23e6e2333631f3f147878faadea7a5fbe8474e4",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "BLUR /WETH",
+        "apy": 0,
+        "tvl": 53661074,
+        "poolAddress": "0xa9fe996431b470cb06f60bac62a39a74442d9193",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/USDT",
+        "apy": 16.46,
+        "tvl": 31294546,
+        "poolAddress": "0x641c00a822e8b671738d32a431a4fb6074e5c79d",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/USDC",
+        "apy": 0.61,
+        "tvl": 28835356,
+        "poolAddress": "0xc31e54c7a869b9fcbecc14363cf510d1c41fa443",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WBTC/USDT",
+        "apy": 23.71,
+        "tvl": 13987727,
+        "poolAddress": "0x5969efdde3cf5c0d9a88ae51e47d721096a97203",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WBTC/USDC",
+        "apy": 0,
+        "tvl": 13794637,
+        "poolAddress": "0x0e4831319a50228b9e450861297ab92dee15b44f",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/GMX",
+        "apy": 1.4,
+        "tvl": 13231974,
+        "poolAddress": "0x80a9ae39310abf666a87c743d6ebbd0e8c42158e",
+        "feeTier": "1%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/USDC",
+        "apy": 6.31,
+        "tvl": 10592085,
+        "poolAddress": "0xc473e2aee3441bf9240be85eb122abb059a3b57c",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/ARB",
+        "apy": 11.42,
+        "tvl": 6553097,
+        "poolAddress": "0xc6f780497a95e246eb9449f5e4770916dcd6396a",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/USDC",
+        "apy": 1,
+        "tvl": 5580042,
+        "poolAddress": "0x17c14d2c404d167802b16c450d3c99f88f2c4f4d",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "PENDLE/WETH",
+        "apy": 3.83,
+        "tvl": 5079120,
+        "poolAddress": "0xdbaeb7f0dfe3a0aafd798ccecb5b22e708f7852c",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/GMX",
+        "apy": 1.29,
+        "tvl": 4529118,
+        "poolAddress": "0x1aeedd3727a6431b8f070c0afaa81cc74f273882",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "ARB/USDC",
+        "apy": 0.49,
+        "tvl": 4273160,
+        "poolAddress": "0xcda53b1f66614552f834ceef361a8d12a0b8dad8",
+        "feeTier": "0.05%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "WETH/LINK",
+        "apy": 6.17,
+        "tvl": 4038763,
+        "poolAddress": "0x468b88941e7cc0b88c1869d68ab6b570bcef62ff",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "PSI/WETH",
+        "apy": 0,
+        "tvl": 4030630,
+        "poolAddress": "0x50c7390dfdd3756139e6efb5a461c2eb7331ceb4",
+        "feeTier": "0.3%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      },
+      {
+        "protocol": "Uniswap V3",
+        "chain": "arbitrum",
+        "asset": "RAIN/WETH",
+        "apy": 3.5,
+        "tvl": 3899959,
+        "poolAddress": "0xd13040d4fe917ee704158cfcb3338dcd2838b245",
+        "feeTier": "0.01%",
+        "lastUpdated": "2026-02-24T18:28:33.256Z"
+      }
+    ]
   }
 }
