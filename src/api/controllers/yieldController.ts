@@ -3,12 +3,12 @@ import { redisClient } from '../../utils/redisClient.js';
 
 export const getAggregatedYields = async (req: Request, res: Response): Promise<void> => {
     try {
-        const chainsQuery = req.query.chains as string;
-        const minAPYQuery = req.query.minAPY as string;
+        const chain = req.query.chains as string;
+        const minapy = req.query.minAPY as string;
 
         let targetChains = ['ethereum', 'polygon', 'arbitrum'];
-        if (chainsQuery) {
-            targetChains = chainsQuery.split(',').map(c => c.trim().toLowerCase());
+        if (chain) {
+            targetChains = chain.split(',').map(c => c.trim().toLowerCase());
         }
 
         let allOpportunities: any[] = [];
@@ -21,8 +21,8 @@ export const getAggregatedYields = async (req: Request, res: Response): Promise<
             }
         }
 
-        if (minAPYQuery && !isNaN(Number(minAPYQuery))) {
-            const minAPY = Number(minAPYQuery);
+        if (minapy && !isNaN(Number(minapy))) {
+            const minAPY = Number(minapy);
             allOpportunities = allOpportunities.filter(opp => opp.apy >= minAPY);
         }
 
