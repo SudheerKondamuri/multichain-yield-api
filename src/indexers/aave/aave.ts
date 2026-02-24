@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SUBGRAPH_IDS, TRACKED_TOKENS } from '../constants/subgraphs.js';
+import { SUBGRAPH_IDS, TRACKED_TOKENS } from '../../config/constants.js';
 
 export async function fetchAaveYields(chain: 'ethereum' | 'polygon' | 'arbitrum') {
   try {
