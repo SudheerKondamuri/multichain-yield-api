@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { SUBGRAPH_IDS, TRACKED_TOKENS } from '../../config/constants.js';
+import { AAVE_SUBGRAPH_IDS, TRACKED_TOKENS } from '../../config/constants.js';
 
 export async function fetchAaveYields(chain: 'ethereum' | 'polygon' | 'arbitrum') {
   try {
-    const url = `https://gateway.thegraph.com/api/${process.env.GRAPH_API_KEY}/subgraphs/id/${SUBGRAPH_IDS[chain].aave}`;
-
+    const url = `https://gateway.thegraph.com/api/${process.env.GRAPH_API_KEY}/subgraphs/id/${AAVE_SUBGRAPH_IDS[chain].aave}`;
     const query = `{
       markets(where: { isActive: true }, first: 100) {
         id
@@ -42,7 +41,7 @@ export async function fetchAaveYields(chain: 'ethereum' | 'polygon' | 'arbitrum'
         chain,
         asset: m.inputToken?.symbol,
         type: "lending",
-        apy,
+        apy: Number(apy.toFixed(2)),
         tvl: Number(m.totalValueLockedUSD || 0),
         poolAddress: m.id,
         lastUpdated: new Date().toISOString()
