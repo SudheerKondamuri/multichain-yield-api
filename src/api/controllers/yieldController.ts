@@ -23,7 +23,7 @@ export const getAggregatedYields = async (req: Request, res: Response): Promise<
 
         if (minapy && !isNaN(Number(minapy))) {
             const minAPY = Number(minapy);
-            allOpportunities = allOpportunities.filter(opp => opp.apy >= minAPY);
+            allOpportunities = allOpportunities.filter(opp=> opp.apy >= minAPY);
         }
 
         res.status(200).json({ opportunities: allOpportunities });
@@ -64,4 +64,65 @@ export const getStatus = async (_req: Request, res: Response): Promise<void> => 
         console.error("Error in getStatus:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
+};
+
+const SUPPORTED_CHAINS = ["ethereum", "arbitrum", "polygon"];
+
+export const getBestYield = async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Determine which chains to query based on the request URL, defaulting to all
+    const reqChain = req.query.chain as string;
+    const chainsToFetch = reqChain && SUPPORTED_CHAINS.includes(reqChain.toLowerCase()) 
+      ? [reqChain.toLowerCase()] 
+      : SUPPORTED_CHAINS;
+
+    // Fetch all relevant Redis keys in parallel
+    const redisKeys = chainsToFetch.map(chain => `yields:${chain}`);
+    const rawDataArray = await redisClient.mGet(redisKeys);
+
+    let allOpportunities: any[] = [];
+
+    // Safely parse each returned key, ignoring nulls from failed syncs
+    rawDataArray.forEach((rawData) => {
+      if (rawData) {
+        try {
+          const parsed = JSON.parse(rawData);
+          if (Array.isArray(parsed)) {
+            allOpportunities.push(...parsed);
+          }
+        } catch (parseError) {
+          console.error("Failed to parse Redis yield data:", parseError);
+        }
+      }
+    });
+
+    if (allOpportunities.length === 0) {
+      res.status(404).json({ error: "Yield data is currently empty or syncing." });
+      return;
+    }
+
+    // Apply strict safety threshold: Minimum $1,000,000 TVL to filter out low-liquidity traps
+    let filteredOpportunities = allOpportunities.filter((pool: any) => pool.tvl >= 1000000);
+
+    // Apply optional protocol filter from query parameters
+    const reqProtocol = req.query.protocol as string;
+    if (reqProtocol) {
+      filteredOpportunities = filteredOpportunities.filter((pool: any) => 
+        pool.protocol && pool.protocol.toLowerCase().includes(reqProtocol.toLowerCase())
+      );
+    }
+
+    if (filteredOpportunities.length === 0) {
+      res.status(404).json({ error: "No credible pools matched your criteria." });
+      return;
+    }
+
+    // Sort descending by APY and extract the absolute best one
+    const bestYield = filteredOpportunities.sort((a: any, b: any) => b.apy - a.apy)[0];
+
+    res.status(200).json(bestYield);
+  } catch (error) {
+    console.error("Error fetching best yield:", error);
+    res.status(500).json({ error: "Internal server error while processing yield data." });
+  }
 };
