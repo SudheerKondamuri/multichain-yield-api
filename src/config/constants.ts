@@ -18,18 +18,45 @@ const AAVE_SUBGRAPH_IDS = {
 
 const TRACKED_TOKENS = ['USDC', 'USDT', 'DAI', 'USDS', 'WETH', 'WBTC', 'stETH', 'cbETH', 'crvUSD', 'GHO'];
 
-const CURVE_POOL_IDS = {
-  ethereum: [
-    "0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7", // 3Pool (DAI/USDC/USDT)
-    "0xdc24316b9ae028f1497c275eb9192a3ea0f67022"  // stETH/ETH
-  ],
-  polygon: [
-    "0x445fe580ef8d70ff569ab36e80c647af338db351"  // aave (DAI/USDC/USDT)
-  ],
-  arbitrum: [
-    "0x7f90122bf980008853d853c654262146305526e8", // 2Pool (USDC/USDT)
-    "0x7b8a62f2468774e0d005b76543a70d4b71a2b92b"  // crvUSD/USDC
-  ]
+const TRACKED_TOKEN_ADDRESSES = {
+  ethereum: {
+    USDC:  "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    USDT:  "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    DAI:   "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    USDS:  null, // verify — not standard on mainnet
+    WETH:  "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    WBTC:  "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    stETH: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+    cbETH: "0xBe9895146f7AF43049cA1c1AE358B0541Ea49704",
+    crvUSD:"0xf939e0a03fB07F59A73314E73794Be0E57aC1b4E",
+    GHO:   "0x40D16FC0246aEBC1eF2aaDe4A9d5C2D8eA2fEd9b"
+  },
+
+  arbitrum: {
+    USDC:  "0xaf88d065e77c8cC2239327C5EDb3A432268e5831", // native USDC (Circle)
+    USDT:  "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+    DAI:   "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+    USDS:  null,
+    WETH:  "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+    WBTC:  "0x2f2a2543b76a4166549f7aaab2e75befeadef67",
+    stETH: null, // Lido not native on Arbitrum (uses wstETH)
+    cbETH: null,
+    crvUSD:"0x498bF64d9A5A8f6bF6b5C69E7f6D6D5A4F0f0F8b",
+    GHO:   null
+  },
+
+  polygon: {
+    USDC:  "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    USDT:  "0xc2132D05D31c914a87C6611C10748AaCbD7E8f",
+    DAI:   "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+    USDS:  null,
+    WETH:  "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+    WBTC:  "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
+    stETH: null,
+    cbETH: null,
+    crvUSD: null,
+    GHO:    null
+  }
 };
 const UNISWAP_SUBGRAPH_IDS: Record<string, string> = {
   ethereum: "5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV",
@@ -43,4 +70,4 @@ const CURVE_SUBGRAPH_IDS: Record<string, string> = {
   arbitrum: 'Gv6NJRut2zrm79ef4QHyKAm41YHqaLF392sM3cz9wywc'
 };
 
-export { AAVE_SUBGRAPH_IDS, TRACKED_TOKENS, CURVE_POOL_IDS, UNISWAP_SUBGRAPH_IDS, CURVE_SUBGRAPH_IDS };
+export { AAVE_SUBGRAPH_IDS, TRACKED_TOKENS, TRACKED_TOKEN_ADDRESSES, UNISWAP_SUBGRAPH_IDS, CURVE_SUBGRAPH_IDS };
